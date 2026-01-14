@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background-light: #ffffff;
+  --color-background-dark: #0a0a0a;
+  --color-foreground-light: #171717;
+  --color-foreground-dark: #FFFFFF;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-background-light);
+  --foreground: var(--color-foreground-light);
+  --sidebar-width: 16rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: var(--color-background-dark);
+  --foreground: var(--color-foreground-dark);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Ensure primary text color is consistent: */
+:root, body {
+  --foreground: #0D0D0D;
+  color: var(--foreground);
 }
