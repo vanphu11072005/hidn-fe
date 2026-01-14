@@ -11,10 +11,8 @@ import {
   Loader2,
   AlertCircle,
 } from 'lucide-react';
-import { 
-  adminService,
-  type ToolAnalytics,
-} from '@/services/admin';
+import { adminService } from '@/services/admin';
+import type { ToolAnalytics } from '@/types/admin.types';
 
 type SortField = 'usage' | 'credits' | 'rate' | 'rank';
 

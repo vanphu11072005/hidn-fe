@@ -13,10 +13,8 @@ import {
   Settings2,
   Loader2,
 } from 'lucide-react';
-import { 
-  adminService, 
-  type AdminToolConfig 
-} from '@/services/admin';
+import { adminService } from '@/services/admin';
+import type { AdminToolConfig } from '@/types/admin.types';
 
 // Types
 interface ToolConfig {

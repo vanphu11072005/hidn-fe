@@ -23,7 +23,7 @@ import type {
   SystemLogLevel,
   SystemLogType,
   SystemStats,
-} from '@/services/admin/admin.service';
+} from '@/types/admin.types';
 
 // Types
 type LogLevel = SystemLogLevel;

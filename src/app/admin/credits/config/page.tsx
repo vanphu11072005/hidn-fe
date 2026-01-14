@@ -12,12 +12,8 @@ import {
   X,
   Loader2,
 } from 'lucide-react';
-import { 
-  adminService,
-  type CreditConfig,
-  type ToolPricing,
-  type BonusConfig,
-} from '@/services/admin';
+import { adminService } from '@/services/admin';
+import type { CreditConfig, ToolPricing, BonusConfig } from '@/types/admin.types';
 
 export default function AdminCreditConfigPage() {
   const [config, setConfig] = useState<CreditConfig | null>(null);
