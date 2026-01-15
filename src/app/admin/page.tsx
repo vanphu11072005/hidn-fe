@@ -2,6 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
+import { adminService } from '@/services/admin/admin.service';
 import { 
   Users, 
   CreditCard, 
@@ -62,30 +63,14 @@ export default function AdminDashboardPage() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/dashboard/stats`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        }
-      );
+      // Use adminService which attaches auth header via apiClient
+      const result = await adminService.getDashboardStats();
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch dashboard data');
-      }
-
-      const result = await response.json();
-
-      if (result.success) {
-        setStats(result.data.stats);
-        setUsageData(result.data.usageData);
-        setToolUsage(result.data.toolUsage);
-        setRecentActivity(result.data.recentActivity);
-      } else {
-        throw new Error(result.message || 'Failed to load data');
-      }
+      // apiClient returns the inner `data` object directly
+      setStats(result.stats);
+      setUsageData(result.usageData);
+      setToolUsage(result.toolUsage);
+      setRecentActivity(result.recentActivity);
     } catch (err) {
       console.error('Error fetching dashboard data:', err);
       setError('Không thể tải dữ liệu dashboard');

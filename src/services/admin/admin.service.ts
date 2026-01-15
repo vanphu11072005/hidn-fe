@@ -57,7 +57,12 @@ export const adminService = {
   /**
    * Get dashboard statistics
    */
-  async getDashboardStats() {
+  async getDashboardStats(): Promise<{
+    stats: any;
+    usageData: { label: string; value: number }[];
+    toolUsage: any[];
+    recentActivity: any[];
+  }> {
     return await apiClient.get('/api/admin/dashboard/stats');
   },
 
