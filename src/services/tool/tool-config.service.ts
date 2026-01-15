@@ -9,12 +9,12 @@ let lastFetchTime = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 /**
- * Fetch tool configs from admin API
+ * Fetch tool configs from public API
  */
 export async function fetchToolConfigs(): Promise<ToolConfigCache> {
   try {
     const configs = await apiClient.get<ToolConfigFromDB[]>(
-      '/api/admin/tools/config'
+      '/api/ai/tools/config'
     );
     
     const cache: ToolConfigCache = {};
@@ -27,13 +27,7 @@ export async function fetchToolConfigs(): Promise<ToolConfigCache> {
     
     return cache;
   } catch (error: any) {
-    // Handle permission errors gracefully (403 = not admin)
-    if (error?.statusCode === 403) {
-      // Silently use defaults for non-admin users
-      return {};
-    }
-    
-    // Log other errors
+    // Log errors
     console.error('Failed to fetch tool configs:', {
       message: error?.message || error?.toString() || 'Unknown error',
       statusCode: error?.statusCode,
