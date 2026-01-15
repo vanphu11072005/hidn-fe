@@ -1,8 +1,8 @@
 import type { ApiResponse, ApiError } from '@/types/common.types';
 import { getSession, signOut } from 'next-auth/react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 
-  'http://localhost:5000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL ||
+  'https://hidn-be.onrender.com';
 
 class ApiClient {
   private baseURL: string;
